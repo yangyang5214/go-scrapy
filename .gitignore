@@ -1,3 +1,9 @@
 bin
 .idea
 .vscode
+
+proto
+!*.proto
+
+conf
+!*.conf

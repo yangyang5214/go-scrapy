@@ -2,6 +2,20 @@ version: 3
 
 
 tasks:
+  default:
+    cmds:
+      - task: build
+      - task: proto
+      - task: conf
+
   build:
     cmds:
       - mkdir -p bin && go build -o bin/go-script
+
+  proto:
+    cmds:
+      - protoc --go_out=./proto --go_opt=paths=source_relative --go-grpc_out=./proto --go-grpc_opt=paths=source_relative $(find  . -type f   -name '*proto')
+
+  conf:
+    cmds:
+      - protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative ./conf/*.proto
